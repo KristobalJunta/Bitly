@@ -7,9 +7,10 @@
  * @author Kristobal Junta, https://github.com/KristobalJunta
  */
 
-namespace Junta;
+namespace KristobalJunta;
 
-class Bitly {
+class Bitly
+{
     /**
      * The current accessToken
      * @var string
@@ -26,7 +27,8 @@ class Bitly {
      * Set accessToken
      * @param string $token
      */
-    public function setAccessToken($token) {
+    public function setAccessToken($token)
+    {
         $this->accessToken = $token;
     }
 
@@ -35,9 +37,10 @@ class Bitly {
      * @param string $type
      * @throws \Exception
      */
-    public function setResponseType($type) {
+    public function setResponseType($type)
+    {
         $validTypes = ['txt', 'xml', 'json'];
-        if(false === array_search($type, $validTypes)) {
+        if (false === array_search($type, $validTypes)) {
             throw new Exception('Invalid response type set');
         }
         $this->responseType = $type;
@@ -47,7 +50,8 @@ class Bitly {
      * Get current response type
      * @return string
      */
-    public function getResponseType() {
+    public function getResponseType()
+    {
         $this->accessToken = $accessToken;
     }
 
@@ -106,22 +110,23 @@ class Bitly {
      * @param string $link The link to shorten
      * @return mixed bit.ly API response
      */
-    public function shorten($link) {
+    public function shorten($link)
+    {
         $url = 'https://api-ssl.bitly.com/v3/shorten?access_token=' . $this->accessToken;
         $url .= '&format=' . $this->responseType;
         $url .= '&longUrl=' . urlencode($link);
 
         $result = $this->curl($url);
 
-        if('json' == $this->responseType)
+        if ('json' == $this->responseType)
         {
             $result = json_decode($result);
         }
-        if('xml' == $this->responseType)
+        if ('xml' == $this->responseType)
         {
             $result = simplexml_load_string($result);
         }
-        if('txt' == $this->responseType)
+        if ('txt' == $this->responseType)
         {
             $result = trim($result);
         }

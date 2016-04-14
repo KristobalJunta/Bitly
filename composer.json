@@ -1,0 +1,21 @@
+{
+    "name": "kristobaljunta/bitly-shortening-class",
+    "description": "A simple class to shorten links using Bitly API",
+    "type": "library",
+    "license": "WTFPL",
+    "authors": [
+        {
+            "name": "Kristobal",
+            "email": "junta.kristobal@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+      "php": ">=5.3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Bitly": "src/"
+        }
+    }
+}
